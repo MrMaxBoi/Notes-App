@@ -79,12 +79,30 @@ export const useNotesStore = defineStore('notes', () => {
     }
   }
 
+  const togglePin = async (id) => {
+    try {
+      const response = await fetch(`/api/notes/${id}/pin`, {
+        method: 'PUT'
+      })
+      const data = await response.json()
+      if (data.success) {
+        // Update local state by re-fetching to maintain proper order
+        await fetchNotes()
+        return { success: true, message: 'Note pin toggled successfully' }
+      }
+      return { success: false, message: data.message }
+    } catch (error) {
+      return { success: false, message: 'Error toggling pin' }
+    }
+  }
+
   return {
     notes,
     loading,
     fetchNotes,
     createNote,
     updateNote,
-    deleteNote
+    deleteNote,
+    togglePin
   }
 })

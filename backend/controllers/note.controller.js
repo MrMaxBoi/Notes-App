@@ -3,7 +3,11 @@ import Note from "../models/note.model.js";
 export const getNotes = async (req, res) => {
     try {
         const notes = await Note.findAll({
-            order: [['createdAt', 'DESC']]
+            order: [
+                ['isPinned', 'DESC'],
+                ['pinnedAt', 'DESC'],
+                ['createdAt', 'DESC']
+            ]
         });
         res.status(200).json({ success: true, data: notes });
     } catch (error) {
@@ -58,6 +62,26 @@ export const deleteNote = async (req, res) => {
         res.status(200).json({ success: true, message: "Note deleted" });
     } catch (error) {
         console.log("error in deleting note:", error.message);
+        res.status(500).json({ success: false, message: "Server Error" });
+    }
+};
+
+export const togglePin = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const note = await Note.findByPk(id);
+        if (!note) {
+            return res.status(404).json({ success: false, message: "Note not found" });
+        }
+
+        note.isPinned = !note.isPinned;
+        note.pinnedAt = note.isPinned ? new Date() : null;
+        await note.save();
+
+        res.status(200).json({ success: true, data: note });
+    } catch (error) {
+        console.log("error in toggling pin:", error.message);
         res.status(500).json({ success: false, message: "Server Error" });
     }
 };

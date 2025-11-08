@@ -14,6 +14,14 @@ const Note = sequelize.define('Note', {
     content: {
         type: DataTypes.TEXT,
         allowNull: false
+    },
+    isPinned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    pinnedAt: {
+        type: DataTypes.DATE,
+        allowNull: true
     }
 }, {
     timestamps: true // adds createdAt and updatedAt

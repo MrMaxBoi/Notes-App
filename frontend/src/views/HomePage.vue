@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1 class="text-h3 text-center mb-8">📝 My Notes</h1>
+    <h1 
+      class="text-h3 text-center mb-8" 
+      style="font-family: 'Merriweather', serif; font-weight: 400; letter-spacing: 0.01em;"
+    >
+      📝 My Notes
+    </h1>
     
     <v-row v-if="loading">
       <v-col class="text-center">
@@ -22,20 +27,58 @@
 
     <v-row v-else>
       <v-col v-for="note in notes" :key="note.id" cols="12" md="6" lg="4">
-        <v-card>
-          <v-card-title>{{ note.title }}</v-card-title>
-          <v-card-text>{{ note.content }}</v-card-text>
-          <v-card-actions>
-            <small>{{ formatDate(note.createdAt) }}</small>
+        <v-card 
+          class="mb-4" 
+          hover
+          :style="{
+            transition: 'all 0.3s ease',
+            cursor: 'pointer',
+            borderLeft: note.isPinned ? '4px solid #91A88C' : '4px solid transparent'
+          }"
+          @mouseenter="$event.target.style.transform = 'translateY(-2px)'"
+          @mouseleave="$event.target.style.transform = 'translateY(0)'"
+        >
+          <v-card-title class="text-h6 font-weight-medium pb-2">
+            {{ note.title }}
+          </v-card-title>
+          <v-card-text class="pb-2" style="line-height: 1.6;">
+            {{ note.content }}
+          </v-card-text>
+          <v-card-actions class="pt-0">
+            <small class="text-secondary">{{ formatDate(note.createdAt) }}</small>
+            <v-chip v-if="note.isPinned" size="x-small" color="primary" class="ml-2">
+              <v-icon start size="x-small">mdi-pin</v-icon>
+              Pinned
+            </v-chip>
             <v-spacer></v-spacer>
-            <v-btn icon="mdi-pencil" size="small" @click="editNote(note)"></v-btn>
-            <v-btn icon="mdi-delete" size="small" color="error" @click="deleteNote(note.id)"></v-btn>
+            <v-btn 
+              :icon="note.isPinned ? 'mdi-pin' : 'mdi-pin-outline'" 
+              :color="note.isPinned ? 'primary' : 'default'"
+              size="small" 
+              variant="text"
+              @click="togglePin(note.id)"
+              style="transition: all 0.2s ease;"
+            ></v-btn>
+            <v-btn 
+              icon="mdi-pencil" 
+              size="small" 
+              variant="text"
+              @click="editNote(note)"
+              style="transition: all 0.2s ease;"
+            ></v-btn>
+            <v-btn 
+              icon="mdi-delete" 
+              size="small" 
+              color="error" 
+              variant="text"
+              @click="deleteNote(note.id)"
+              style="transition: all 0.2s ease;"
+            ></v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
 
-    <v-fab icon="mdi-plus" location="bottom end" @click="$router.push('/create')"></v-fab>
 
     <!-- Edit Dialog -->
     <v-dialog v-model="editDialog" max-width="600px">
@@ -144,6 +187,14 @@ export default {
       }
     }
 
+    const togglePin = async (id) => {
+      try {
+        await notesStore.togglePin(id)
+      } catch (error) {
+        console.error('Error toggling pin:', error)
+      }
+    }
+
     return {
       notes,
       loading,
@@ -157,7 +208,8 @@ export default {
       editNote,
       saveEdit,
       deleteNote,
-      confirmDelete
+      confirmDelete,
+      togglePin
     }
   }
 }
