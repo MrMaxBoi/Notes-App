@@ -14,10 +14,20 @@ A full-stack notes management application built with Vue.js, Express.js, and SQL
 
 ## 🛠️ Tech Stack
 
-- Vue.js 3 with Vuetify
-- Node.js
-- Express.js
+**Frontend:**
+- Vue.js 3 
+- Vuetify 
+
+**Backend:**
+- Node.js + Express.js
+- Sequelize ORM
 - SQLite Database
+- RESTful API Design
+
+**DevOps:**
+- Docker & Docker Compose
+- Railway Deployment
+- Environment Configuration
 
 ## 📋 Prerequisites
 
@@ -78,6 +88,40 @@ npm run build
 npm start
 ```
 
+## 🐳 Docker Deployment
+
+### **Using Docker Compose (Recommended)**
+
+**Build and run the application:**
+```bash
+docker-compose up --build
+```
+
+**Run in detached mode:**
+```bash
+docker-compose up -d
+```
+
+**Stop the application:**
+```bash
+docker-compose down
+```
+
+### **Using Docker directly**
+
+**Build the image:**
+```bash
+docker build -t notes-app .
+```
+
+**Run the container:**
+```bash
+docker run -p 5050:5050 notes-app
+```
+
+**Access the application:**
+- Application: http://localhost:5050
+
 ## 📡 API Endpoints
 
 | Method | Endpoint | Description |
@@ -117,6 +161,9 @@ notes-app/
 │   └── package.json
 ├── database.sqlite            # SQLite database file
 ├── .env                       # Environment variables
+├── Dockerfile                 # Docker container configuration
+├── docker-compose.yml         # Docker Compose orchestration
+├── .dockerignore             # Docker ignore file
 └── package.json
 ```
 
