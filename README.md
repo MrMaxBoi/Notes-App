@@ -9,24 +9,15 @@ A full-stack notes management application built with Vue.js, Express.js, and SQL
 - ✏️ **Edit notes** with inline dialog
 - 🗑️ **Delete notes** with confirmation prompt
 - 🌙 **Dark/Light mode** toggle
-- 📱 **Responsive design** with Vuetify Material Design
-- 💾 **Persistent storage** with SQLite database
+- 📌 **Pin notes** Prioritise your notes
+
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
-- Vue.js 3 (Composition API)
-- Vuetify (Material Design)
-- Vue Router (Navigation)
-- Pinia (State Management)
-- Vite (Build Tool)
-
-**Backend:**
+- Vue.js 3 with Vuetify
 - Node.js
 - Express.js
-- Sequelize ORM
 - SQLite Database
-- dotenv (Environment Variables)
 
 ## 📋 Prerequisites
 
@@ -37,7 +28,7 @@ A full-stack notes management application built with Vue.js, Express.js, and SQL
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/MrMaxBoi/Notes-App
    cd notes-app
    ```
 
@@ -141,23 +132,6 @@ notes-app/
 - `npm run build` - Build frontend for production
 - `npm run preview` - Preview production build
 
-## 🎨 UI Features
-
-- **Material Design** components with Vuetify
-- **Responsive layout** that works on mobile and desktop
-- **Dark/Light theme** toggle
-- **Loading states** and **error handling**
-- **Form validation** for note creation
-- **Confirmation dialogs** for destructive actions
-
-## 🗄️ Database
-
-The application uses **SQLite** as the database:
-- **File-based** database (`database.sqlite`)
-- **No setup required** - automatically created on first run
-- **Persistent storage** - data survives server restarts
-- **Lightweight** and perfect for development and small applications
-
 ## 🔧 Development Process
 
 This project was built using AI assistance for:
@@ -175,11 +149,3 @@ Key decisions made:
 ## 📝 License
 
 This project is licensed under the ISC License.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request

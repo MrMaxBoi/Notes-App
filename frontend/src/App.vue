@@ -1,30 +1,31 @@
 <template>
   <v-app>
-    <v-app-bar color="primary" elevation="3" style="backdrop-filter: blur(10px);">
+    <v-app-bar color="primary" elevation="0" style="background: rgba(145, 168, 140, 0.9) !important; backdrop-filter: blur(20px);">
       <v-app-bar-title class="font-weight-medium">
-        <v-btn 
-          to="/" 
-          variant="text" 
-          :color="isDark ? 'on-primary' : 'white'"
-          style="text-transform: none; font-size: 1.25rem; font-family: 'Merriweather', serif; font-weight: 400; letter-spacing: 0.01em;"
+        <div 
+          class="glass-title"
+          @click="$router.push('/')"
+          style="cursor: pointer; font-size: 1.25rem; font-family: 'Merriweather', serif; font-weight: 400; letter-spacing: 0.01em; color: white; display: inline-block;"
         >
         📝 Notes App
-        </v-btn>
+        </div>
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-btn 
-        icon 
-        @click="toggleTheme" 
-        class="mr-2"
-        style="transition: transform 0.2s ease;"
+        icon
+        @click="toggleTheme"
+        class="glass-button mr-2"
+        variant="flat"
+        style="border-radius: 12px;"
       >
         <v-icon>{{ isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
       </v-btn>
       <v-btn 
-        to="/create" 
-        prepend-icon="mdi-plus" 
-        rounded="lg"
-        style="transition: all 0.2s ease;"
+        @click="$router.push('/create')"
+        class="glass-button"
+        variant="flat"
+        prepend-icon="mdi-plus"
+        style="border-radius: 12px;"
       >
         New Note
       </v-btn>

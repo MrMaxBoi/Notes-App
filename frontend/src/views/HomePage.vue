@@ -55,24 +55,24 @@
               :icon="note.isPinned ? 'mdi-pin' : 'mdi-pin-outline'" 
               :color="note.isPinned ? 'primary' : 'default'"
               size="small" 
-              variant="text"
+              variant="flat"
+              class="glass-small mr-1"
               @click="togglePin(note.id)"
-              style="transition: all 0.2s ease;"
             ></v-btn>
             <v-btn 
               icon="mdi-pencil" 
               size="small" 
-              variant="text"
+              variant="flat"
+              class="glass-small mr-1"
               @click="editNote(note)"
-              style="transition: all 0.2s ease;"
             ></v-btn>
             <v-btn 
               icon="mdi-delete" 
               size="small" 
               color="error" 
-              variant="text"
+              variant="flat"
+              class="glass-small"
               @click="deleteNote(note.id)"
-              style="transition: all 0.2s ease;"
             ></v-btn>
           </v-card-actions>
         </v-card>
