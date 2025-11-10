@@ -134,17 +134,30 @@ notes-app/
 
 ## 🔧 Development Process
 
-This project was built using AI assistance for:
-- **Architecture planning** and technology selection
-- **Code generation** for boilerplate components
-- **Problem-solving** for database integration and Vue reactivity
-- **UI design** with Vuetify components
+1. Project Structure & Setup
+This project was built using the file structure from my earlier MERN project. The backend is separated into routes, controllers, and config folders for clarity, while the frontend follows Vue.js component structure. This clean separation of file structure made it easier to debug and expand features later on.
 
-Key decisions made:
-- **Vue.js over React** for the assignment requirements
-- **SQLite over MongoDB** for simpler setup and file-based storage
-- **Vuetify over Tailwind** for rapid Material Design implementation
-- **Pinia over Vuex** for modern Vue 3 state management
+2. Design Language & User Experience
+The visual design draws inspiration from Apple’s Books app, focusing on a calm, minimalist color palette and high-readability serif typography. The goal was to create an environment that encourages focus and productivity. This guided both the color and font choices to prioritize user comfort and clarity.
+
+3. AI-Assisted Development
+AI tools such as Amazon Q were used to streamline the development process, particularly in code planning and generation. Example uses include:
+	•	Data validation & flow checking: Confirmed parameter flow between frontend and backend before implementation to prevent integration issues.
+	•	Boilerplate generation: Used prompts such as “Generate CRUD integration for notes.js with basic error handling” to speed up setup.
+	•	Feature walkthroughs: Requested step-by-step guidance like “Explain the logic for implementing a pin system” to verify design intent before coding.
+
+4. UI Effects & Experimentation
+Experiments with glassmorphism to achieve an iOS-like “visual glass” aesthetic for buttons and overlays. The @wxperia/liquid-glass-vue library was attempted but caused layout inconsistencies in Vue’s flex containers. As fallback, custom vanilla CSS was implemented with:
+	•	Backdrop blur and subtle depth shadows
+	•	Gradient shimmer animations
+	•	Smooth transitions and hover lift effects
+
+## 🚀 Future Improvements
+- User Authentication: Enable multiple users to have personal note spaces using an API like Clerk for secure login and session management.
+- Personalization Options: Allow users to customize fonts, text size, and color themes.
+- Advanced Note Organization: Add support for categories, bullet lists, and checklists to suit different note-taking needs.
+- Enhanced Media Support: Integrate drawing tools and image attachments to make notes more expressive and interactive.
+
 
 ## 📝 License
 
