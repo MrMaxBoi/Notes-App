@@ -13,13 +13,16 @@ const PORT = process.env.PORT || 5050;
 
 const __dirname = path.resolve();
 
-app.use(express.json()); // to accept json data in req.body
+app.use(express.json()); 
 
 app.use('/api/notes', noteRoutes);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
     app.get('*', (req, res) => {
+        if (req.path.startsWith('/api/')) {
+            return res.status(404).json({ message: 'API route not found' });
+        }
         res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
 }
