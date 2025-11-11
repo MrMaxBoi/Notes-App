@@ -1,6 +1,7 @@
 # 📝 Notes App
 
 A full-stack notes management application built with Vue.js, Express.js, and SQLite.
+Deployed on: 🔗https://notes-app-production-c99e.up.railway.app
 
 ## ✨ Features
 
@@ -15,7 +16,7 @@ A full-stack notes management application built with Vue.js, Express.js, and SQL
 ## 🛠️ Tech Stack
 
 **Frontend:**
-- Vue.js 3 
+- Vue.js
 - Vuetify 
 
 **Backend:**
