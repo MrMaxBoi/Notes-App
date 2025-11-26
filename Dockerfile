@@ -17,7 +17,7 @@ COPY --from=frontend-build /app/frontend/dist ./backend-spring/src/main/resource
 RUN cd backend-spring && mvn clean package -DskipTests
 
 # Stage 3: Runtime
-FROM openjdk:21-jre-slim
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copy built JAR from backend build stage
