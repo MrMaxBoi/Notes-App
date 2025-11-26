@@ -20,7 +20,7 @@ WORKDIR /app
 COPY backend-spring/pom.xml ./backend-spring/
 COPY backend-spring/src ./backend-spring/src/
 # Copy frontend build to Spring Boot static resources
-COPY --from=frontend-build /app/frontend/dist ./backend-spring/src/main/resources/static/
+COPY --from=frontend-build /app/frontend/dist/* ./backend-spring/src/main/resources/static/
 RUN cd backend-spring && mvn clean package -DskipTests
 
 # Stage 3: Runtime

@@ -16,6 +16,11 @@ public class NoteController {
         return "OK";
     }
     
+    @GetMapping("/debug")
+    public String debug() {
+        return "API is working. Check /api/notes for data.";
+    }
+    
     @Autowired
     private NoteRepository noteRepository;
 
