@@ -1,7 +1,11 @@
 node_modules
 frontend/node_modules
 frontend/dist
+backend-spring/target
 .git
 .env
 *.log
 .DS_Store
+README.md
+.gitignore
+railway.toml
