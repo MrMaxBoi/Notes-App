@@ -10,9 +10,7 @@ export const useNotesStore = defineStore('notes', () => {
     try {
       const response = await fetch('/api/notes')
       const data = await response.json()
-      if (data.success) {
-        notes.value = data.data
-      }
+      notes.value = data
     } catch (error) {
       console.error('Error fetching notes:', error)
     } finally {
@@ -29,14 +27,16 @@ export const useNotesStore = defineStore('notes', () => {
         },
         body: JSON.stringify(noteData),
       })
-      const data = await response.json()
-      if (data.success) {
-        notes.value.unshift(data.data)
-        return { success: true, message: 'Note created successfully' }
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
-      return { success: false, message: data.message }
+      
+      const data = await response.json()
+      notes.value.unshift(data)
+      return { success: true, message: 'Note created successfully' }
     } catch (error) {
-      return { success: false, message: 'Error creating note' }
+      return { success: false, message: `Error creating note: ${error.message}` }
     }
   }
 
@@ -50,14 +50,11 @@ export const useNotesStore = defineStore('notes', () => {
         body: JSON.stringify(noteData),
       })
       const data = await response.json()
-      if (data.success) {
-        const index = notes.value.findIndex(note => note.id === id)
-        if (index !== -1) {
-          notes.value[index] = data.data
-        }
-        return { success: true, message: 'Note updated successfully' }
+      const index = notes.value.findIndex(note => note.id === id)
+      if (index !== -1) {
+        notes.value[index] = data
       }
-      return { success: false, message: data.message }
+      return { success: true, message: 'Note updated successfully' }
     } catch (error) {
       return { success: false, message: 'Error updating note' }
     }
@@ -68,12 +65,12 @@ export const useNotesStore = defineStore('notes', () => {
       const response = await fetch(`/api/notes/${id}`, {
         method: 'DELETE',
       })
-      const data = await response.json()
-      if (data.success) {
+      
+      if (response.ok) {  
         notes.value = notes.value.filter(note => note.id !== id)
         return { success: true, message: 'Note deleted successfully' }
       }
-      return { success: false, message: data.message }
+      return { success: false, message: 'Error deleting note' }
     } catch (error) {
       return { success: false, message: 'Error deleting note' }
     }
@@ -84,17 +81,25 @@ export const useNotesStore = defineStore('notes', () => {
       const response = await fetch(`/api/notes/${id}/pin`, {
         method: 'PUT'
       })
-      const data = await response.json()
-      if (data.success) {
-        // Update local state by re-fetching to maintain proper order
+      
+      if (response.ok) {
+        const updatedNote = await response.json()
+        // Update the specific note in the array
+        const index = notes.value.findIndex(note => note.id === id)
+        if (index !== -1) {
+          notes.value[index] = updatedNote
+        }
+        // Re-fetch to get proper sorting (pinned notes first)
         await fetchNotes()
         return { success: true, message: 'Note pin toggled successfully' }
       }
-      return { success: false, message: data.message }
+      return { success: false, message: 'Error toggling pin' }
     } catch (error) {
+      console.error('Toggle pin error:', error)
       return { success: false, message: 'Error toggling pin' }
     }
   }
+
 
   return {
     notes,

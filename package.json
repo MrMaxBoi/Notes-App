@@ -1,27 +1,16 @@
 {
   "name": "notes-app",
   "version": "1.0.0",
-  "description": "A full-stack notes management application built with Vue.js, Express.js, and SQLite",
-  "main": "index.js",
+  "description": "A full-stack notes management application built with Vue.js, Spring Boot, and SQLite",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon backend/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "NODE_ENV=production node backend/server.js",
-    "ci-check": "node backend/server.js & sleep 5 && kill $!"
+    "dev:backend": "cd backend-spring && mvn spring-boot:run",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:backend": "cd backend-spring && mvn clean package",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start": "java -jar backend-spring/target/notes-app-1.0.0.jar"
   },
-  "type": "module",
-  "keywords": [],
+  "keywords": ["notes", "spring-boot", "vue", "java", "sqlite"],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-
-    "sequelize": "^6.37.7",
-    "sqlite3": "^5.1.7"
-  },
-  "devDependencies": {
-    "nodeman": "^1.1.2",
-    "nodemon": "^3.1.10"
-  }
+  "license": "ISC"
 }

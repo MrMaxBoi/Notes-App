@@ -6,8 +6,8 @@ services:
     ports:
       - "5050:5050"
     environment:
-      - NODE_ENV=production
-      - PORT=5050
+      - SPRING_PROFILES_ACTIVE=production
+      - SERVER_PORT=5050
     volumes:
       - ./database.sqlite:/app/database.sqlite
     restart: unless-stopped

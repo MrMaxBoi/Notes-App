@@ -1,6 +1,6 @@
 # 📝 Notes App
 
-- A full-stack notes management application built with Vue.js, Express.js, and SQLite.
+- A full-stack notes management application built with Vue.js, Spring Boot, and SQLite.
 - Deployed on: 🔗https://notes-app-production-c99e.up.railway.app
 
 ## ✨ Features
@@ -20,8 +20,8 @@
 - Vuetify 
 
 **Backend:**
-- Node.js + Express.js
-- Sequelize ORM
+- Java + Spring Boot
+- JPA/Hibernate ORM
 - SQLite Database
 - RESTful API Design
 
@@ -45,7 +45,9 @@
 
 2. **Install backend dependencies**
    ```bash
-   npm install
+   # Backend dependencies are managed by Maven
+   cd backend-spring
+   mvn install
    ```
 
 3. **Install frontend dependencies**
@@ -69,7 +71,8 @@
 
 **Start Backend:**
 ```bash
-npm run dev
+cd backend-spring
+mvn spring-boot:run
 ```
 
 **Start Frontend (in another terminal):**
@@ -86,7 +89,7 @@ npm run dev
 
 ```bash
 npm run build
-npm start
+java -jar backend-spring/target/notes-app-1.0.0.jar
 ```
 
 ## 🐳 Docker Deployment

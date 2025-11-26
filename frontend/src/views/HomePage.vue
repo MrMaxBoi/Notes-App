@@ -33,7 +33,7 @@
           :style="{
             transition: 'all 0.3s ease',
             cursor: 'pointer',
-            borderLeft: note.isPinned ? '4px solid #91A88C' : '4px solid transparent'
+            borderLeft: note.pinned ? '4px solid #91A88C' : '4px solid transparent'
           }"
           @mouseenter="$event.target.style.transform = 'translateY(-2px)'"
           @mouseleave="$event.target.style.transform = 'translateY(0)'"
@@ -46,14 +46,14 @@
           </v-card-text>
           <v-card-actions class="pt-0">
             <small class="text-secondary">{{ formatDate(note.createdAt) }}</small>
-            <v-chip v-if="note.isPinned" size="x-small" color="primary" class="ml-2">
+            <v-chip v-if="note.pinned" size="x-small" color="primary" class="ml-2">
               <v-icon start size="x-small">mdi-pin</v-icon>
               Pinned
             </v-chip>
             <v-spacer></v-spacer>
             <v-btn 
-              :icon="note.isPinned ? 'mdi-pin' : 'mdi-pin-outline'" 
-              :color="note.isPinned ? 'primary' : 'default'"
+              :icon="note.pinned ? 'mdi-pin' : 'mdi-pin-outline'" 
+              :color="note.pinned ? 'primary' : 'default'"
               size="small" 
               variant="flat"
               class="glass-small mr-1"
