@@ -5,10 +5,12 @@
   "scripts": {
     "dev:backend": "cd backend-spring && mvn spring-boot:run",
     "dev:frontend": "cd frontend && npm run dev",
-    "build:backend": "cd backend-spring && mvn clean package",
+    "build:backend": "cd backend-spring && mvn clean package -DskipTests",
     "build:frontend": "cd frontend && npm run build",
-    "build": "npm run build:backend && npm run build:frontend",
-    "start": "java -jar backend-spring/target/notes-app-1.0.0.jar"
+    "build": "npm run build:frontend && mkdir -p backend-spring/src/main/resources/static && cp -r frontend/dist/* backend-spring/src/main/resources/static/ && npm run build:backend",
+    "start": "java -jar backend-spring/target/notes-app-1.0.0.jar",
+    "railway:build": "npm run build",
+    "railway:start": "npm start"
   },
   "keywords": ["notes", "spring-boot", "vue", "java", "sqlite"],
   "author": "",
