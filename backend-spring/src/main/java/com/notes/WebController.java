@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebController {
     
-    @RequestMapping(value = {"/", "/{x:[\\w\\-]+}", "/{x:^(?!api$).*$}/**"})
+    @RequestMapping(value = "/")
     public String index() {
+        return "forward:/index.html";
+    }
+    
+    @RequestMapping(value = "/{path:^(?!api).*}/**")
+    public String redirect() {
         return "forward:/index.html";
     }
 }
