@@ -8,17 +8,7 @@
     "build:backend": "cd backend-spring && mvn clean package -DskipTests",
     "build:frontend": "cd frontend && npm run build",
     "build": "npm run build:frontend && mkdir -p backend-spring/src/main/resources/static && cp -r frontend/dist/* backend-spring/src/main/resources/static/ && npm run build:backend",
-    "start": "java -jar backend-spring/target/notes-app-1.0.0.jar",
-    "railway:build": "npm run build",
-    "railway:start": "npm start"
+    "start": "java -jar backend-spring/target/notes-app-1.0.0.jar"
   },
-  "keywords": ["notes", "spring-boot", "vue", "java", "sqlite"],
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": "18.x",
-    "npm": "9.x"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  "keywords": ["notes", "spring-boot", "vue", "java", "sqlite"]
 }
