@@ -8,8 +8,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/notes")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://notes-app-production-c99e.up.railway.app"})
 public class NoteController {
+    
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
+    }
     
     @Autowired
     private NoteRepository noteRepository;
