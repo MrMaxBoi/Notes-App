@@ -1,0 +1,13 @@
+[phases.setup]
+nixPkgs = ["nodejs", "maven", "openjdk21"]
+
+[phases.build]
+cmds = [
+  "cd frontend && npm install && npm run build",
+  "mkdir -p backend-spring/src/main/resources/static",
+  "cp -r frontend/dist/* backend-spring/src/main/resources/static/",
+  "cd backend-spring && mvn clean package -DskipTests"
+]
+
+[start]
+cmd = "java -jar backend-spring/target/notes-app-1.0.0.jar"
