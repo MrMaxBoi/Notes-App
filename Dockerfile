@@ -36,9 +36,5 @@ COPY --from=backend-build /app/backend-spring/target/notes-app-1.0.0.jar app.jar
 # Expose port
 EXPOSE 8080
 
-# Add health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-  CMD curl -f http://localhost:8080/api/notes/health || exit 1
-
 # Start the application
 CMD ["java", "-jar", "app.jar"]

@@ -3,6 +3,4 @@ builder = "dockerfile"
 
 [deploy]
 startCommand = "java -jar app.jar"
-healthcheckPath = "/api/notes/health"
-healthcheckTimeout = 300
 restartPolicyType = "on_failure"
