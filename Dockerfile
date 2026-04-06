@@ -36,5 +36,5 @@ COPY --from=backend-build /app/backend-spring/target/notes-app-1.0.0.jar app.jar
 # Expose port
 EXPOSE 8080
 
-# Start the application
-CMD ["java", "-jar", "app.jar"]
+# Start the application - use Railway's PORT env variable
+CMD ["sh", "-c", "java -Dserver.port=$PORT -jar app.jar"]
